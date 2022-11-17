@@ -3,7 +3,6 @@ package main
 import (
 	"context"
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -82,7 +81,7 @@ func orderHandler(c echo.Context) error {
 		})
 	}
 
-	fmt.Println("OrderCreation Message ID: " + *result.MessageId)
+	log.Println("OrderCreation Message ID: " + *result.MessageId)
 
 	// *Charge Customer*
 	// Invoke  chargeCustomer lambda
@@ -161,7 +160,7 @@ func orderHandler(c echo.Context) error {
 		})
 	}
 
-	fmt.Println("OrderPayment Message ID: " + *result.MessageId)
+	log.Println("OrderPayment Message ID: " + *result.MessageId)
 
 	// *Start Shipment*
 	// Invoke  shipment lambda
@@ -243,7 +242,7 @@ func orderHandler(c echo.Context) error {
 		})
 	}
 
-	fmt.Println("OrderShipment Message ID: " + *result.MessageId)
+	log.Println("OrderShipment Message ID: " + *result.MessageId)
 
 	return c.JSON(200, echo.Map{
 		"success": true,
@@ -261,9 +260,9 @@ func tablesHandler(c echo.Context) error {
 		log.Fatalf("failed to list tables, %v", err)
 	}
 
-	fmt.Println("Tables:")
+	log.Println("Tables:")
 	for _, tableName := range resp.TableNames {
-		fmt.Println(tableName)
+		log.Println(tableName)
 	}
 
 	return c.JSON(200, resp)
@@ -272,7 +271,7 @@ func tablesHandler(c echo.Context) error {
 
 func getItemHandler(c echo.Context) error {
 	itemId := c.Param("itemId")
-	fmt.Println(itemId)
+	log.Println(itemId)
 
 	tableName := "Inventory"
 

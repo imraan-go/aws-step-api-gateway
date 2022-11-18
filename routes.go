@@ -122,6 +122,7 @@ func orderHandler(c echo.Context) error {
 
 	if chargeCustomerResponse.PaymentStatus != "Paid" {
 		log.Println("chargeCustomer Something went wrong")
+		log.Println(string(output.Payload))
 		return nil
 	}
 

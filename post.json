@@ -1,0 +1,52 @@
+{
+  "order": {
+    "OrderId": "009",
+    "ItemId": "21",
+    "Quantity": 2,
+    "ItemName": "MAC",
+    "OrderStatus": "Unshipped",
+    "OrderTotal": {
+      "CurrencyCode": "USD",
+      "Amount": "11.01"
+    },
+    "OrderType": "Purchase",
+    "PurchaseDate": "1970-01-19T03:58:30Z"
+  },
+  "customer": {
+    "CustomerId": "111",
+    "CustomerName": "Alex",
+    "CustomerEmail": "user@example.com",
+    "CustomerAddress": "Vancouver",
+    "IsPrime": false
+  },
+  "payment": {
+    "PaymentId": "001",
+    "PaymentStatus": "Paid",
+    "PaymentMethod": "Credit",
+    "CardNumber": "1312 4321 4324 4234",
+    "CardVerificationValue": "123",
+    "BillingAddress": {
+      "Name": "Michigan address",
+      "AddressLine1": "1 Cross St.",
+      "City": "Canton",
+      "StateOrRegion": "MI",
+      "PostalCode": "48817",
+      "CountryCode": "US"
+    }
+  },
+  "deliveryDetails": {
+    "DeliveryId": "001",
+    "StartShipmentTimestamp": "Undefined",
+    "DeliverierInfo": "Canada post",
+    "ShipmentService": "Standard",
+    "EarliestShipDate": "2017-01-20T19:51:16Z",
+    "LatestShipDate": "2017-01-25T19:49:35Z",
+    "ShippingAddress": {
+      "AddressLine1": "1 Cross St.",
+      "City": "Canton",
+      "StateOrRegion": "MI",
+      "PostalCode": "48817",
+      "CountryCode": "US"
+    }
+  }
+}

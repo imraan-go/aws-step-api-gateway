@@ -65,6 +65,23 @@ func orderHandler(c echo.Context) error {
 		})
 	}
 
+	orderValidationResponse := entity.CreateOrderResponse{}
+	err = json.Unmarshal(output.Payload, &orderValidationResponse)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, echo.Map{
+			"error":   "validateOrder.json.error",
+			"message": err.Error(),
+		})
+	}
+
+	if orderValidationResponse.ErrorMessage != "" {
+		log.Println(string(output.Payload))
+		return c.JSON(http.StatusBadRequest, echo.Map{
+			"error":   "validateOrder.lambda.error",
+			"message": strings.Join(orderValidationResponse.StackTrace, "-"),
+		})
+	}
+
 	// *Notify Order Creation Result*
 	// publish to sns
 
@@ -111,6 +128,14 @@ func orderHandler(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, echo.Map{
 			"error":   "chargeCustomer.json.error",
 			"message": err.Error(),
+		})
+	}
+
+	if chargeCustomerResponse.ErrorMessage != "" {
+		log.Println(string(output.Payload))
+		return c.JSON(http.StatusBadRequest, echo.Map{
+			"error":   "chargeCustomer.lambda.error",
+			"message": strings.Join(chargeCustomerResponse.StackTrace, "-"),
 		})
 	}
 
